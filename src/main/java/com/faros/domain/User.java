@@ -1,24 +1,31 @@
 package com.faros.domain;
 
 import lombok.Data;
-import org.bson.types.ObjectId;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import java.util.Set;
 
 /**
  * Created by juchtdi on 29/12/2016.
  */
 @Data
-@Document(collection = "users")
+@Entity
 public class User {
     @Id
-    private ObjectId id;
+    @GeneratedValue
+    private Long id;
     private String userName;
     private String password;
     private String email;
     private boolean active;
     private String phoneNumber;
+    @OneToMany
     private Set<Role> roles;
+
+    public User(){
+
+    }
 }

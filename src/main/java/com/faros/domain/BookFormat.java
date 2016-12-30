@@ -1,17 +1,23 @@
 package com.faros.domain;
 
 import lombok.Data;
-import org.bson.types.ObjectId;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 /**
  * Created by juchtdi on 29/12/2016.
  */
 @Data
-@Document(collection = "bookFormats")
+@Entity
 public class BookFormat {
     @Id
-    private ObjectId id;
+    @GeneratedValue
+    private Long id;
     private String name;
+
+    public BookFormat(){
+
+    }
 }

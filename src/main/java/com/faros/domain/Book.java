@@ -2,12 +2,8 @@ package com.faros.domain;
 
 import com.faros.domain.enums.Language;
 import lombok.Data;
-import org.bson.types.ObjectId;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.Reference;
-import org.springframework.data.mongodb.core.mapping.DBRef;
-import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
@@ -16,27 +12,37 @@ import java.util.Set;
  * Created by juchtdi on 29/12/2016.
  */
 @Data
-@Document(collection = "books")
+@Entity
 public class Book {
     @Id
-    private ObjectId id;
+    @GeneratedValue
+    private Long id;
     private String isbn10;
     private String isbn13;
     private String title;
-    @Reference
-    private Set<Author> authors = new HashSet<>();
+    @ManyToMany
+    private Set<Author> authors;
+    @Enumerated(EnumType.STRING)
     private Language language;
     private int pages;
-    @Reference
-    private Set<Category> categories = new HashSet<>();
-    private Set<String> keywords = new HashSet<>();
+    @ManyToMany
+    private Set<Category> categories;
+    @ElementCollection
+    private Set<String> keywords;
     private LocalDate releaseDate;
     private int edition;
-    @Reference
+    @ManyToOne
     private BookType type;
-    @Reference
+    @ManyToOne
     private BookFormat format;
     private String summary;
-    private Set<String> images = new HashSet<>();
+    @ElementCollection
+    private Set<String> images;
 
+    public Book(){
+        this.authors = new HashSet<>();
+        this.categories = new HashSet<>();
+        this.keywords = new HashSet<>();
+        this.images = new HashSet<>();
+    }
 }

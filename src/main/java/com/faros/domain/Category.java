@@ -1,17 +1,23 @@
 package com.faros.domain;
 
 import lombok.Data;
-import org.bson.types.ObjectId;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 /**
  * Created by juchtdi on 29/12/2016.
  */
 @Data
-@Document(collection = "categories")
+@Entity
 public class Category {
     @Id
-    private ObjectId id;
+    @GeneratedValue
+    private Long id;
     private String name;
+
+    public Category(){
+
+    }
 }

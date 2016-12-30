@@ -44,20 +44,17 @@ public class DatabaseLoader implements CommandLineRunner {
         bookFormatRepository.deleteAll();
 
         Author author1 = new Author();
-        author1.setFirstName("Dimitri");
-        author1.setLastName("Juchtmans");
+        author1.setName("Dimitri Juchtmans");
 
         Author author2 = new Author();
-        author2.setFirstName("Jeroen");
-        author2.setLastName("Sterken");
+        author2.setName("Jeroen Sterken");
 
         Author author3 = new Author();
-        author3.setFirstName("Johan");
-        author3.setLastName("Vlaeyen");
+        author3.setName("Johan Vlaeyen");
 
         author1 = authorRepository.save(author1);
-        author2 = authorRepository.save(author1);
-        author3 = authorRepository.save(author1);
+        author2 = authorRepository.save(author2);
+        author3 = authorRepository.save(author3);
 
         Category category1 = new Category();
         category1.setName("Fantasy");
@@ -112,6 +109,22 @@ public class DatabaseLoader implements CommandLineRunner {
         book2.setType(type);
         book2.setImages(new HashSet<>(Arrays.asList("card.jpg", "ace.jpg")));
 
-        bookRepository.save(Arrays.asList(book1, book2));
+        Book book3 = new Book();
+        book3.setIsbn10("0123456788");
+        book3.setIsbn13("9876543219877");
+        book3.setTitle("How to play Poker Part 2");
+        book3.setLanguage(Language.EN);
+        book3.setPages(200);
+        book3.getKeywords().addAll(Arrays.asList("poker", "holdem"));
+        book3.setReleaseDate(LocalDate.now());
+        book3.setEdition(1);
+        book3.setSummary("This is a summary");
+        book3.getAuthors().addAll(Arrays.asList(author1));
+        book3.getCategories().add(category1);
+        book3.setFormat(format);
+        book3.setType(type);
+        book3.setImages(new HashSet<>(Arrays.asList("card.jpg", "ace.jpg")));
+
+        bookRepository.save(Arrays.asList(book1, book2, book3));
     }
 }
