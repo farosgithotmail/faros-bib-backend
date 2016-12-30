@@ -26,6 +26,7 @@ public interface BookRepository extends PagingAndSortingRepository<Book, Long> {
     Page<Book> findDistinctByFormatNameContainingIgnoreCase(@Param(value = "name") String name, Pageable pageable);
 
     @RestResource(path = "by-keyword", rel = "by-keyword")
+    @Query("SELECT DISTINCT book FROM Book book LEFT JOIN book.keywords keywords WHERE upper(keywords) LIKE upper(CONCAT('%',:keywords, '%'))")
     Page<Book> findDistinctByKeywordsContainingIgnoreCase(@Param(value = "keywords") String keywords, Pageable pageable);
 
     @RestResource(path = "by-whatever", rel = "by-whatever")

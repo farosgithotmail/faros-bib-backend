@@ -125,6 +125,22 @@ public class DatabaseLoader implements CommandLineRunner {
         book3.setType(type);
         book3.setImages(new HashSet<>(Arrays.asList("card.jpg", "ace.jpg")));
 
-        bookRepository.save(Arrays.asList(book1, book2, book3));
+        Book book4 = new Book();
+        book4.setIsbn10("5555555555");
+        book4.setIsbn13("1313131313131");
+        book4.setTitle("How to play Poker Part 3");
+        book4.setLanguage(Language.EN);
+        book4.setPages(200);
+        book4.getKeywords().addAll(Arrays.asList("poker", "holdem"));
+        book4.setReleaseDate(LocalDate.now());
+        book4.setEdition(1);
+        book4.setSummary("This is a summary");
+        book4.getAuthors().addAll(Arrays.asList(author1));
+        book4.getCategories().add(category1);
+        book4.setFormat(format);
+        book4.setType(type);
+        book4.setImages(new HashSet<>(Arrays.asList("card.jpg", "ace.jpg")));
+
+        bookRepository.save(Arrays.asList(book1, book2, book3, book4));
     }
 }
