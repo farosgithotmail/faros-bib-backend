@@ -141,6 +141,38 @@ public class DatabaseLoader implements CommandLineRunner {
         book4.setType(type);
         book4.setImages(new HashSet<>(Arrays.asList("card.jpg", "ace.jpg")));
 
-        bookRepository.save(Arrays.asList(book1, book2, book3, book4));
+        Book book5 = new Book();
+        book5.setIsbn10("5555555555");
+        book5.setIsbn13("1313131313131");
+        book5.setTitle("How to play Poker Part 4");
+        book5.setLanguage(Language.EN);
+        book5.setPages(200);
+        book5.getKeywords().addAll(Arrays.asList("poker", "holdem"));
+        book5.setReleaseDate(LocalDate.now());
+        book5.setEdition(1);
+        book5.setSummary("This is a summary");
+        book5.getAuthors().addAll(Arrays.asList(author1, author2));
+        book5.getCategories().addAll(Arrays.asList(category3, category2));
+        book5.setFormat(format);
+        book5.setType(type);
+        book5.setImages(new HashSet<>(Arrays.asList("card.jpg", "ace.jpg")));
+
+        Book book6 = new Book();
+        book6.setIsbn10("5555555555");
+        book6.setIsbn13("1313131313131");
+        book6.setTitle("How to play Poker Part 5");
+        book6.setLanguage(Language.EN);
+        book6.setPages(200);
+        book6.getKeywords().addAll(Arrays.asList("poker", "holdem"));
+        book6.setReleaseDate(LocalDate.now());
+        book6.setEdition(1);
+        book6.setSummary("This is a summary");
+        book6.getAuthors().addAll(Arrays.asList(author1, author3));
+        book6.getCategories().addAll(Arrays.asList(category1, category2));
+        book6.setFormat(format);
+        book6.setType(type);
+        book6.setImages(new HashSet<>(Arrays.asList("card.jpg", "ace.jpg")));
+
+        bookRepository.save(Arrays.asList(book1, book2, book3, book4, book5, book6));
     }
 }
